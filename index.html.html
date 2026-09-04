@@ -1,0 +1,778 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Небольшой сюрприз для Дмитрия</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background:
+            radial-gradient(circle at top, #4b2b1d, #17110e 65%);
+        color: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 700px;
+        margin: 0 auto;
+        min-height: 100vh;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .screen {
+        display: none;
+        width: 100%;
+        min-height: 620px;
+        padding: 35px 25px;
+        border-radius: 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 15px 50px rgba(0,0,0,0.45);
+        animation: appear 0.7s ease;
+    }
+
+    .screen.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+            transform: translateY(25px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ---------- ЭКРАН 1 ---------- */
+
+    #screen1 {
+        background:
+            linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.45)),
+            linear-gradient(135deg, #8b5a2b, #2c1a13);
+    }
+
+    /* ---------- ЭКРАН 2 ---------- */
+
+    #screen2 {
+        background:
+            linear-gradient(135deg, #263b52, #101820);
+    }
+
+    /* ---------- ЭКРАН 3 ---------- */
+
+    #screen3 {
+        background:
+            linear-gradient(135deg, #5c2d36, #24131b);
+    }
+
+    /* ---------- ЭКРАН 4 ---------- */
+
+    #screen4 {
+        background:
+            linear-gradient(135deg, #4d3422, #17110e);
+    }
+
+    /* ---------- ЭКРАН 5 ---------- */
+
+    #screen5 {
+        background:
+            linear-gradient(135deg, #b86b33, #4c1f1f, #170d15);
+    }
+
+    /* ---------- ЭКРАН 6 ---------- */
+
+    #screen6 {
+        background:
+            linear-gradient(135deg, #0b6b48, #075238, #032e22);
+    }
+
+    h1 {
+        font-size: 34px;
+        line-height: 1.25;
+        margin-bottom: 25px;
+        text-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+        font-size: 28px;
+        line-height: 1.3;
+        margin-bottom: 25px;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.55;
+        margin-bottom: 20px;
+    }
+
+    .small {
+        font-size: 16px;
+        opacity: 0.8;
+    }
+
+    .lion {
+        font-size: 110px;
+        margin: 10px 0 20px;
+        animation: floatLion 3s ease-in-out infinite;
+    }
+
+    .lioness {
+        font-size: 105px;
+        margin: 10px 0 20px;
+        animation: floatLion 3s ease-in-out infinite;
+    }
+
+    @keyframes floatLion {
+        0%, 100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+
+    .heart {
+        font-size: 35px;
+        animation: pulse 1.8s infinite;
+        display: inline-block;
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.2);
+        }
+    }
+
+    .question {
+        font-size: 23px;
+        margin: 20px 0 30px;
+        font-weight: bold;
+    }
+
+    .answers {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    button {
+        width: 100%;
+        padding: 17px 18px;
+        border: none;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.15);
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.25s;
+        border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    button:hover,
+    button:active {
+        transform: scale(1.03);
+        background: rgba(255,255,255,0.25);
+    }
+
+    .message {
+        margin-top: 25px;
+        min-height: 70px;
+        font-size: 19px;
+        line-height: 1.45;
+        color: #ffe7b5;
+    }
+
+    .next-btn {
+        margin-top: 25px;
+        background: linear-gradient(135deg, #e0a84d, #b96d28);
+        font-weight: bold;
+        display: none;
+    }
+
+    /* ---------- ФИНАЛЬНЫЙ ТЕКСТ ---------- */
+
+    .final-title {
+        font-size: 42px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .name {
+        font-size: 34px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: #ffd889;
+        margin-bottom: 30px;
+    }
+
+    .final-text {
+        max-width: 560px;
+        font-size: 21px;
+        line-height: 1.6;
+    }
+
+    .signature {
+        margin-top: 30px;
+        font-size: 25px;
+        font-style: italic;
+        color: #ffd889;
+    }
+
+    /* ---------- БАНКОВСКОЕ СООБЩЕНИЕ ---------- */
+
+    .bank-notification {
+        width: 100%;
+        max-width: 520px;
+        background: #ffffff;
+        color: #1b1b1b;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+        text-align: left;
+        animation: bankAppear 0.8s ease;
+    }
+
+    @keyframes bankAppear {
+        from {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .bank-header {
+        background: linear-gradient(135deg, #1a9b65, #087b4d);
+        color: white;
+        padding: 18px 20px;
+        font-size: 22px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .bank-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+    }
+
+    .bank-body {
+        padding: 28px 24px;
+    }
+
+    .bank-time {
+        color: #888;
+        font-size: 15px;
+        margin-bottom: 25px;
+    }
+
+    .bank-main-text {
+        font-size: 23px;
+        line-height: 1.45;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .bank-highlight {
+        display: block;
+        color: #087b4d;
+        font-size: 32px;
+        margin: 15px 0;
+    }
+
+    .bank-balance {
+        background: #f1f5f3;
+        padding: 18px;
+        border-radius: 16px;
+        margin-top: 15px;
+    }
+
+    .bank-balance small {
+        display: block;
+        color: #777;
+        margin-bottom: 7px;
+    }
+
+    .bank-balance strong {
+        font-size: 25px;
+        color: #087b4d;
+    }
+
+    .birthday-bank {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        color: #ffd889;
+        line-height: 1.4;
+    }
+
+    .confetti {
+        position: absolute;
+        font-size: 25px;
+        animation: fall 5s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        from {
+            transform: translateY(-100px) rotate(0deg);
+        }
+
+        to {
+            transform: translateY(750px) rotate(360deg);
+        }
+    }
+
+    .restart {
+        margin-top: 30px;
+        max-width: 300px;
+        background: rgba(255,255,255,0.18);
+    }
+
+    @media (max-width: 500px) {
+
+        .container {
+            padding: 10px;
+        }
+
+        .screen {
+            min-height: 650px;
+            padding: 30px 18px;
+            border-radius: 22px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .lion,
+        .lioness {
+            font-size: 90px;
+        }
+
+        .final-title {
+            font-size: 34px;
+        }
+
+        .name {
+            font-size: 28px;
+        }
+
+        .final-text {
+            font-size: 18px;
+        }
+
+        .bank-main-text {
+            font-size: 20px;
+        }
+
+        .bank-highlight {
+            font-size: 27px;
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+
+    <!-- ================= ЭКРАН 1 ================= -->
+
+    <section class="screen active" id="screen1">
+
+        <div class="lion">🦁</div>
+
+        <h1>Небольшой вопрос<br>для одного Льва...</h1>
+
+        <p>
+            Иногда хорошее настроение появляется
+            совершенно неожиданно.
+        </p>
+
+        <div class="question">
+            Что способно немного улучшить твой день?
+        </div>
+
+        <div class="answers">
+
+            <button onclick="answer(1,
+            'Правильный ответ! Хотя, кажется, я знаю ещё один способ... 😏')">
+                Хорошее настроение
+            </button>
+
+            <button onclick="answer(1,
+            'Неплохой вариант. Но один источник позитивного настроя тебе уже знаком)))')">
+                Неожиданный сюрприз
+            </button>
+
+            <button onclick="answer(1,
+            'Подозреваю, что ты выбрал это не просто так)))')">
+                Хорошая компания
+            </button>
+
+        </div>
+
+        <div class="message" id="message1"></div>
+
+        <button class="next-btn" id="next1"
+                onclick="nextScreen(2)">
+            Продолжить →
+        </button>
+
+    </section>
+
+
+    <!-- ================= ЭКРАН 2 ================= -->
+
+    <section class="screen" id="screen2">
+
+        <div class="lioness">🦁</div>
+
+        <h2>Вопрос от Знакомой Львицы</h2>
+
+        <p>
+            Представь: день идёт как-то не очень.
+            Дел много, настроение буксует...
+        </p>
+
+        <div class="question">
+            Что нужно сделать?
+        </div>
+
+        <div class="answers">
+
+            <button onclick="answer(2,
+            'Иногда это действительно работает. Особенно если кто-то вовремя напоминает, что пора улыбнуться)))')">
+                Выпить кофе
+            </button>
+
+            <button onclick="answer(2,
+            'Правильное решение. Хотя настроение иногда тоже само приходит... откуда-то)))')">
+                Сделать паузу
+            </button>
+
+            <button onclick="answer(2,
+            'Вот! Именно так и появляются хорошие истории)))')">
+                Написать кому-нибудь
+            </button>
+
+        </div>
+
+        <div class="message" id="message2"></div>
+
+        <button class="next-btn" id="next2"
+                onclick="nextScreen(3)">
+            Следующий вопрос →
+        </button>
+
+    </section>
+
+
+    <!-- ================= ЭКРАН 3 ================= -->
+
+    <section class="screen" id="screen3">
+
+        <div class="lion">🦁</div>
+
+        <h2>Продолжаем исследование Льва</h2>
+
+        <p>
+            У каждого человека есть маленькие вещи,
+            которые делают день лучше.
+        </p>
+
+        <div class="question">
+            Что тебе ближе?
+        </div>
+
+        <div class="answers">
+
+            <button onclick="answer(3,
+            'Хороший выбор. Тишина иногда очень нужна... но не слишком надолго)))')">
+                Спокойствие и уют
+            </button>
+
+            <button onclick="answer(3,
+            'Вот это уже похоже на тебя! Немного приключений никогда не помешает)))')">
+                Что-нибудь неожиданное
+            </button>
+
+            <button onclick="answer(3,
+            'Хорошая компания — это серьёзный аргумент. Особенно если компания умеет поддерживать настроение)))')">
+                Хорошая компания
+            </button>
+
+        </div>
+
+        <div class="message" id="message3"></div>
+
+        <button class="next-btn" id="next3"
+                onclick="nextScreen(4)">
+            Идём дальше →
+        </button>
+
+    </section>
+
+
+    <!-- ================= ЭКРАН 4 ================= -->
+
+    <section class="screen" id="screen4">
+
+        <div class="lioness">🦁</div>
+
+        <h2>Немного о секретах...</h2>
+
+        <p>
+            Некоторые вещи лучше узнавать постепенно.
+            Так интереснее, правда?)))
+        </p>
+
+        <div class="question">
+            Как ты относишься к приятным секретам?
+        </div>
+
+        <div class="answers">
+
+            <button onclick="answer(4,
+            'Вот и хорошо. Значит, интрига ещё немного поживёт)))')">
+                Люблю интригу
+            </button>
+
+            <button onclick="answer(4,
+            'Любопытство — это нормально. Но не всё же выдавать сразу)))')">
+                Хочу узнать всё прямо сейчас
+            </button>
+
+            <button onclick="answer(4,
+            'Мудрый ответ. Некоторые секреты сами выбирают подходящий момент)))')">
+                Пусть раскрываются постепенно
+            </button>
+
+        </div>
+
+        <div class="message" id="message4"></div>
+
+        <button class="next-btn" id="next4"
+                onclick="nextScreen(5)">
+            Остался ещё один шаг →
+        </button>
+
+    </section>
+
+
+    <!-- ================= ЭКРАН 5 ================= -->
+
+    <section class="screen" id="screen5">
+
+        <div class="heart">❤️</div>
+
+        <div class="lion">🦁</div>
+
+        <h1>ДМИТРИЙ</h1>
+
+        <p class="final-text">
+            Спасибо тебе за внимание, за наши разговоры,
+            за твой ум, чувство юмора и ту лёгкость,
+            с которой даже серьёзные темы у нас
+            иногда превращаются в маленькое приключение.)))
+        </p>
+
+        <p class="final-text">
+            Мы знакомы пока не так давно, поэтому
+            многое друг о друге ещё только предстоит узнать.
+            Но мне уже хочется пожелать тебе прежде всего
+            здоровья, сил, внутреннего спокойствия
+            и побольше дней, которыми действительно хочется жить.
+        </p>
+
+        <p class="final-text">
+            Пусть рядом будут люди, с которыми можно
+            оставаться собой, которым можно доверять,
+            а в жизни будет достаточно поводов
+            улыбаться, смеяться и чувствовать себя хорошо.
+            Береги себя, Дим. Мне правда приятно,
+            что ты однажды появился в моей жизни.)))
+        </p>
+
+        <div class="heart">❤️</div>
+
+        <p class="signature">
+            Твоя Знакомая Львица 🦁
+        </p>
+
+        <button class="next-btn"
+                style="display:block;"
+                onclick="nextScreen(6)">
+            И ещё кое-что для тебя... 🎁
+        </button>
+
+    </section>
+
+
+    <!-- ================= ЭКРАН 6 ================= -->
+
+    <section class="screen" id="screen6">
+
+        <div class="confetti" style="left:8%; animation-delay:0s;">🎉</div>
+        <div class="confetti" style="left:25%; animation-delay:1s;">✨</div>
+        <div class="confetti" style="left:45%; animation-delay:2s;">🎂</div>
+        <div class="confetti" style="left:65%; animation-delay:0.5s;">🎈</div>
+        <div class="confetti" style="left:85%; animation-delay:1.5s;">🎉</div>
+
+        <h2>Новое сообщение</h2>
+
+        <div class="bank-notification">
+
+            <div class="bank-header">
+                <div class="bank-icon">✓</div>
+                СберБанк
+            </div>
+
+            <div class="bank-body">
+
+                <div class="bank-time">
+                    Только что
+                </div>
+
+                <div class="bank-main-text">
+                    На ВАШ счёт зачислено:
+                </div>
+
+                <span class="bank-highlight">
+                    365 новых<br>и счастливых дней
+                </span>
+
+                <div class="bank-balance">
+                    <small>Доступный остаток</small>
+                    <strong>365 дней радости 🎉</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="birthday-bank">
+            🎂 С ДНЁМ РОЖДЕНИЯ! 🎂<br>
+            ДМИТРИЙ! 🦁
+        </div>
+
+        <button class="restart"
+                onclick="restart()">
+            Пройти ещё раз 🔄
+        </button>
+
+    </section>
+
+
+</div>
+
+
+<script>
+
+function answer(number, text) {
+
+    const message = document.getElementById("message" + number);
+    const nextButton = document.getElementById("next" + number);
+
+    message.innerHTML = text;
+    nextButton.style.display = "block";
+
+}
+
+
+function nextScreen(number) {
+
+    const screens = document.querySelectorAll(".screen");
+
+    screens.forEach(function(screen) {
+        screen.classList.remove("active");
+    });
+
+    const next = document.getElementById("screen" + number);
+
+    next.classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+function restart() {
+
+    const screens = document.querySelectorAll(".screen");
+
+    screens.forEach(function(screen) {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen1").classList.add("active");
+
+    for (let i = 1; i <= 4; i++) {
+
+        document.getElementById("message" + i).innerHTML = "";
+        document.getElementById("next" + i).style.display = "none";
+
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+</script>
+
+</body>
+</html>
